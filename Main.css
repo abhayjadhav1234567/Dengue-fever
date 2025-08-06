@@ -1,0 +1,10 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+.cta-button {
+  background: #FF5733; /* Dengue alert color */
+  color: white;
+  padding: 10px 20px;
+}
