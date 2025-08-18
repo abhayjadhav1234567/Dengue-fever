@@ -1,141 +1,288 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Dengue Awareness Project</title>
+  <title>Dengue Awareness – Horror 3D</title>
+  <meta name="description" content="Awareness and Prevention of Dengue Fever — 3D horror theme with flying mosquitoes" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700;900&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    body { font-family: 'Inter', sans-serif; background: black; color: white; }
-    .glass { background: rgba(255,255,255,0.08); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); }
-    #bg { position: fixed; inset: 0; z-index: -1; }
+    :root{ --glass: rgba(255,255,255,.06); --border: rgba(255,255,255,.12); }
+    html{ scroll-behavior:smooth }
+    body{ font-family:Inter,system-ui,Segoe UI,Roboto,Arial; background:#050507; color:#eaeaea; }
+    #bg{ position:fixed; inset:0; z-index:-1; display:block; }
+    .glass{ background:var(--glass); backdrop-filter: blur(12px); border:1px solid var(--border); border-radius:1.25rem; }
+    .halo{ position:absolute; inset:0; pointer-events:none; background:
+      radial-gradient(1200px 600px at 20% -10%, rgba(255,0,70,.12), transparent 60%),
+      radial-gradient(1000px 600px at 120% 110%, rgba(0,255,180,.10), transparent 60%);
+      mix-blend: screen; }
+    .drip{ position:absolute; filter: blur(24px); opacity:.25; mix-blend:screen; }
+    .drip.red{ background:radial-gradient(200px 220px at 20% 30%, #ff0033, transparent 70%); width:28rem;height:28rem; left:-10rem; top:-8rem;}
+    .drip.green{ background:radial-gradient(220px 200px at 80% 80%, #00ffcc, transparent 70%); width:30rem;height:30rem; right:-12rem; bottom:-10rem;}
+    .section{ padding:5rem 1.25rem }
+    .title-evil{ letter-spacing:.02em; text-shadow: 0 0 18px rgba(255,0,70,.35); }
+    a.link{ text-decoration:underline; text-underline-offset:3px }
   </style>
 </head>
 <body>
-  <!-- 3D Background -->
+  <!-- 3D background -->
   <canvas id="bg"></canvas>
+  <div class="halo"></div>
+  <div class="drip red"></div>
+  <div class="drip green"></div>
 
-  <!-- Hero -->
-  <section class="min-h-screen flex items-center justify-center text-center px-6">
-    <div>
-      <h1 class="text-5xl font-extrabold mb-4">Awareness and Prevention of Dengue Fever</h1>
-      <p class="text-lg text-gray-200">Community Engagement Project Proposal</p>
+  <!-- NAV -->
+  <header class="fixed top-0 left-0 right-0 z-30">
+    <nav class="max-w-6xl mx-auto px-4 py-3">
+      <div class="glass flex items-center justify-between px-4 py-3">
+        <a href="#home" class="font-black tracking-tight text-lg"><span class="text-red-400">Dengue</span> Awareness</a>
+        <div class="hidden sm:flex gap-6 text-sm">
+          <a href="#aim">Aim</a><a href="#objectives">Objectives</a><a href="#outcomes">Outcomes</a>
+          <a href="#plan">Plan</a><a href="#place">Place</a><a href="#team">Team</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section id="home" class="min-h-screen grid place-items-center text-center px-6">
+    <div class="max-w-4xl">
+      <h1 class="title-evil text-4xl sm:text-6xl font-black">
+        Awareness & Prevention of <span class="text-red-400">Dengue Fever</span>
+      </h1>
+      <p class="mt-4 text-white/80">Community Engagement Project Proposal • Medical Sector</p>
+      <p class="mt-2 text-xs text-white/50">Move your mouse… the swarm follows.</p>
+      <div class="mt-8 flex justify-center gap-4">
+        <a href="#plan" class="glass px-5 py-3 font-semibold">See Plan</a>
+        <a href="#objectives" class="bg-white text-black font-semibold px-5 py-3 rounded-xl">Objectives</a>
+      </div>
     </div>
   </section>
 
-  <!-- Aim -->
-  <section class="py-20 px-6 max-w-4xl mx-auto">
-    <div class="glass rounded-2xl p-8">
-      <h2 class="text-3xl font-bold mb-4">Aim</h2>
-      <p>To increase awareness about dengue fever, its prevention and control measures in the community to reduce the incidence of dengue cases.</p>
+  <!-- AIM -->
+  <section id="aim" class="section">
+    <div class="max-w-5xl mx-auto glass p-8">
+      <h2 class="text-3xl font-bold mb-3">Aim</h2>
+      <p class="text-white/85">
+        To increase awareness about dengue fever, its prevention and control measures in the community,
+        to reduce the incidence of dengue cases.
+      </p>
     </div>
   </section>
 
-  <!-- Objectives -->
-  <section class="py-20 px-6 max-w-5xl mx-auto">
-    <h2 class="text-3xl font-bold mb-8">Objectives</h2>
-    <ul class="grid md:grid-cols-2 gap-6">
-      <li class="glass p-6 rounded-2xl">Ensure the local community knows about causes and symptoms of dengue fever.</li>
-      <li class="glass p-6 rounded-2xl">Promote preventive measures: mosquito control, eliminating breeding sites, personal protection.</li>
-      <li class="glass p-6 rounded-2xl">Collaborate with local health authorities and organize awareness & cleaning drives.</li>
-      <li class="glass p-6 rounded-2xl">Assess impact of the awareness program on community knowledge and behaviour.</li>
-    </ul>
-  </section>
-
-  <!-- Expected Outcomes -->
-  <section class="py-20 px-6 max-w-6xl mx-auto">
-    <h2 class="text-3xl font-bold mb-8">Expected Outcomes</h2>
-    <div class="grid md:grid-cols-3 gap-6">
-      <div class="glass p-6 rounded-2xl">Improved community knowledge about dengue and its prevention.</div>
-      <div class="glass p-6 rounded-2xl">Reduced mosquito breeding sites through community participation.</div>
-      <div class="glass p-6 rounded-2xl">Enhanced collaboration between community and local authorities.</div>
-      <div class="glass p-6 rounded-2xl">Decrease in number of dengue cases reported during and after the project.</div>
-      <div class="glass p-6 rounded-2xl">Improved personal protection (repellents, clothing, screens).</div>
-      <div class="glass p-6 rounded-2xl">Enhanced community participation in anti-larvae campaigns and clean-up drives.</div>
+  <!-- OBJECTIVES -->
+  <section id="objectives" class="section">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl font-bold mb-6">Objectives</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="glass p-6">Ensure the local community knows causes and symptoms of dengue fever.</div>
+        <div class="glass p-6">Promote prevention: mosquito control, eliminating breeding sites, personal protection.</div>
+        <div class="glass p-6">Collaborate with local health authorities; organize awareness & cleaning drives.</div>
+        <div class="glass p-6">Assess impact on community knowledge and behaviour.</div>
+      </div>
     </div>
   </section>
 
-  <!-- Plan of Execution -->
-  <section class="py-20 px-6 max-w-5xl mx-auto">
-    <h2 class="text-3xl font-bold mb-8">Plan of Execution</h2>
-    <ol class="space-y-4">
-      <li class="glass p-4 rounded-2xl">Week 1 – Introduce project goals and objectives.</li>
-      <li class="glass p-4 rounded-2xl">Week 2 – Assemble project team and assign roles.</li>
-      <li class="glass p-4 rounded-2xl">Week 3 – Utilize social media platforms for awareness.</li>
-      <li class="glass p-4 rounded-2xl">Week 4 – Organize community clean-up events.</li>
-      <li class="glass p-4 rounded-2xl">Week 5 – Assess project impact and effectiveness.</li>
-      <li class="glass p-4 rounded-2xl">Week 6 – Plan for sustained awareness and prevention efforts.</li>
-      <li class="glass p-4 rounded-2xl">Week 7 – Document project outcomes and gather feedback.</li>
-    </ol>
+  <!-- OUTCOMES -->
+  <section id="outcomes" class="section">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl font-bold mb-6">Expected Outcomes</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="glass p-6">Improved community knowledge about dengue and its prevention.</div>
+        <div class="glass p-6">Reduced breeding sites via clean-up & waste management.</div>
+        <div class="glass p-6">Enhanced collaboration between community and local authorities.</div>
+        <div class="glass p-6">Decrease in dengue cases during and after the project.</div>
+        <div class="glass p-6">Better personal protection (repellents, clothing, screens).</div>
+        <div class="glass p-6">Higher participation in anti-larvae campaigns and clean-up drives.</div>
+      </div>
+    </div>
   </section>
 
-  <!-- Place & Authorities -->
-  <section class="py-20 px-6 max-w-5xl mx-auto">
-    <h2 class="text-3xl font-bold mb-4">Place & Involvement of Local Authority</h2>
-    <div class="glass p-6 rounded-2xl">
+  <!-- PLAN -->
+  <section id="plan" class="section">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="text-3xl font-bold mb-6">Plan of Execution</h2>
+      <ol class="space-y-3">
+        <li class="glass p-4 rounded-xl">Week 1 — Introduce project goals and objectives.</li>
+        <li class="glass p-4 rounded-xl">Week 2 — Assemble team and assign roles.</li>
+        <li class="glass p-4 rounded-xl">Week 3 — Use social media platforms for awareness.</li>
+        <li class="glass p-4 rounded-xl">Week 4 — Organize community clean-up events.</li>
+        <li class="glass p-4 rounded-xl">Week 5 — Assess project impact and effectiveness.</li>
+        <li class="glass p-4 rounded-xl">Week 6 — Plan for sustained awareness efforts.</li>
+        <li class="glass p-4 rounded-xl">Week 7 — Document outcomes and gather feedback.</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- PLACE -->
+  <section id="place" class="section">
+    <div class="max-w-5xl mx-auto glass p-8">
+      <h2 class="text-3xl font-bold mb-3">Place & Local Authority Involvement</h2>
       <p><strong>Place:</strong> Girls Hostel, Ghulewadi, Sangamne</p>
-      <p class="mt-2"><strong>Involvement:</strong></p>
-      <ul class="list-disc list-inside text-gray-200">
+      <ul class="list-disc list-inside mt-3 text-white/85">
         <li>Local health department to provide expert resources and data.</li>
-        <li>Municipal corporation to assist in waste disposal and cleaning drive.</li>
+        <li>Municipal corporation to assist in waste disposal and cleaning drives.</li>
       </ul>
     </div>
   </section>
 
-  <!-- Required Resources -->
-  <section class="py-20 px-6 max-w-5xl mx-auto">
-    <h2 class="text-3xl font-bold mb-4">Required Resources</h2>
-    <div class="glass p-6 rounded-2xl">
-      <ul class="list-disc list-inside text-gray-200">
+  <!-- RESOURCES -->
+  <section class="section">
+    <div class="max-w-5xl mx-auto glass p-8">
+      <h2 class="text-3xl font-bold mb-3">Required Resources</h2>
+      <ul class="list-disc list-inside text-white/85">
         <li>Conduct awareness activities.</li>
-        <li>Make videos and posters for awareness.</li>
+        <li>Create videos and posters for awareness.</li>
       </ul>
     </div>
   </section>
 
-  <!-- Team Members -->
-  <section class="py-20 px-6 max-w-5xl mx-auto">
-    <h2 class="text-3xl font-bold mb-8">Team Members</h2>
-    <div class="grid md:grid-cols-2 gap-6">
-      <div class="glass p-4 rounded-2xl">Jain Jiya Amol (Roll No. 356)</div>
-      <div class="glass p-4 rounded-2xl">Mrunal Sanjay Galgatte (Roll No. 343)</div>
-      <div class="glass p-4 rounded-2xl">Abhay Nitin Jadhav (Roll No. 351)</div>
-      <div class="glass p-4 rounded-2xl">Jadhav Kiran Sunil (Roll No. 353)</div>
+  <!-- TEAM -->
+  <section id="team" class="section">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl font-bold mb-6">Team Members</h2>
+      <div class="grid sm:grid-cols-2 gap-4">
+        <div class="glass p-4 rounded-xl">Jain Jiya Amol (Roll No. 356)</div>
+        <div class="glass p-4 rounded-xl">Mrunal Sanjay Galgatte (Roll No. 343)</div>
+        <div class="glass p-4 rounded-xl">Abhay Nitin Jadhav (Roll No. 351)</div>
+        <div class="glass p-4 rounded-xl">Jadhav Kiran Sunil (Roll No. 353)</div>
+      </div>
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="py-10 text-center text-gray-400">
-    Faculty Mentor: Prof. Dighe Mam <br>
-    © 2025 Dengue Awareness Project
+  <!-- FOOTER -->
+  <footer class="py-10 text-center text-white/60">
+    Faculty Mentor: Prof. Dighe Mam • © 2025 Dengue Awareness Project
+    <div class="text-xs mt-2">3D mosquito model credit (CC-BY): see repo README. Source example: Sketchfab. </div>
   </footer>
 
-  <!-- Three.js for 3D Background -->
-  <script src="https://unpkg.com/three@0.158.0/build/three.min.js"></script>
-  <script>
+  <!-- THREE.JS + MOSQUITO SWARM -->
+  <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+  <script type="module">
+    import { GLTFLoader } from "https://unpkg.com/three@0.160.0/examples/jsm/loaders/GLTFLoader.js";
+
     const canvas = document.getElementById('bg');
     const renderer = new THREE.WebGLRenderer({ canvas, antialias:true, alpha:true });
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(60, innerWidth/innerHeight, 0.1, 100);
-    camera.position.z = 5;
-    renderer.setSize(innerWidth, innerHeight);
-    renderer.setPixelRatio(window.devicePixelRatio);
+    const camera = new THREE.PerspectiveCamera(60, innerWidth/innerHeight, 0.1, 200);
+    camera.position.set(0, 0, 7);
 
-    const geo = new THREE.IcosahedronGeometry(2, 1);
-    const mat = new THREE.MeshStandardMaterial({ color: 0x00ffff, wireframe:true });
-    const mesh = new THREE.Mesh(geo, mat);
-    scene.add(mesh);
+    function onResize(){
+      camera.aspect = innerWidth/innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(innerWidth, innerHeight);
+      renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+    }
+    addEventListener('resize', onResize); onResize();
 
-    const light = new THREE.DirectionalLight(0xffffff, 1);
-    light.position.set(2,2,2);
-    scene.add(light);
+    // Fog & lights for horror mood
+    scene.fog = new THREE.FogExp2(0x070709, 0.06);
+    const key = new THREE.DirectionalLight(0xff2244, 1.2); key.position.set(2,3,2); scene.add(key);
+    const fill = new THREE.PointLight(0x22ffee, 0.8, 30); fill.position.set(-4, -2, -3); scene.add(fill);
+    scene.add(new THREE.AmbientLight(0xffffff, 0.2));
 
-    function animate() {
+    // Blood-red ground glow plane (very faint)
+    const plane = new THREE.Mesh(
+      new THREE.PlaneGeometry(200,200),
+      new THREE.MeshBasicMaterial({ color:0x190107 })
+    );
+    plane.rotation.x = -Math.PI/2;
+    plane.position.y = -6;
+    plane.renderOrder = -1;
+    scene.add(plane);
+
+    // Cursor attraction
+    let mouse = new THREE.Vector2(0,0);
+    addEventListener('pointermove', (e)=>{
+      mouse.x = (e.clientX / innerWidth) * 2 - 1;
+      mouse.y = -(e.clientY / innerHeight) * 2 + 1;
+    });
+
+    // Load mosquito model and spawn a swarm
+    const loader = new GLTFLoader();
+    const SWARM_COUNT = 24;        // increase/decrease if needed
+    const swarm = [];
+    loader.load("./assets/mosquito.glb", (gltf)=>{
+      const base = gltf.scene;
+      base.traverse(o=>{
+        if(o.isMesh){
+          o.castShadow = o.receiveShadow = false;
+        }
+      });
+      for(let i=0;i<SWARM_COUNT;i++){
+        const m = base.clone(true);
+        const s = 0.12 + Math.random()*0.08;      // size
+        m.scale.setScalar(s);
+        m.position.set(
+          (Math.random()-0.5)*16,
+          (Math.random()-0.5)*10,
+          (Math.random()-0.5)*14
+        );
+        m.rotation.set(0, Math.random()*Math.PI*2, 0);
+        scene.add(m);
+        swarm.push({
+          mesh: m,
+          speed: 0.008 + Math.random()*0.012,
+          wing: Math.random()*Math.PI*2,  // phase for wing buzz
+          orbit: new THREE.Vector3(
+            Math.random()*2+0.4,
+            Math.random()*1.5+0.2,
+            Math.random()*2+0.4
+          ),
+          jitter: new THREE.Vector3(Math.random(),Math.random(),Math.random())
+        });
+      }
+    });
+
+    // Simple billowing fog sprites (cheap)
+    const fogTex = new THREE.TextureLoader().load("https://upload.wikimedia.org/wikipedia/commons/0/0c/Black_fog.png");
+    for(let i=0;i<8;i++){
+      const s = 12 + Math.random()*8;
+      const sprite = new THREE.Sprite(new THREE.SpriteMaterial({ map:fogTex, color:0x7a0a1a, transparent:true, opacity:0.08 }));
+      sprite.scale.set(s,s,1);
+      sprite.position.set((Math.random()-0.5)*18, (Math.random()-0.5)*10, -5 - Math.random()*4);
+      scene.add(sprite);
+    }
+
+    // Animate
+    let t = 0;
+    function animate(){
       requestAnimationFrame(animate);
-      mesh.rotation.x += 0.003;
-      mesh.rotation.y += 0.004;
+      t += 0.016;
+
+      // Convert mouse to world target
+      const v = new THREE.Vector3(mouse.x, mouse.y, 0.5).unproject(camera);
+      const dir = v.sub(camera.position).normalize();
+      const distance = 6;
+      const target = camera.position.clone().add(dir.multiplyScalar(distance));
+
+      // Move each mosquito
+      for(const m of swarm){
+        const { mesh, speed, orbit, jitter } = m;
+        // orbiting wobble
+        mesh.position.x += Math.sin(t*2 + jitter.x)*0.01*orbit.x;
+        mesh.position.y += Math.cos(t*2.2 + jitter.y)*0.012*orbit.y;
+        mesh.position.z += Math.sin(t*1.8 + jitter.z)*0.01*orbit.z;
+
+        // steer slightly toward target (cursor)
+        const steer = target.clone().sub(mesh.position).multiplyScalar(speed*0.4);
+        mesh.position.add(steer);
+
+        // face movement direction
+        const forward = steer.clone().normalize();
+        if(forward.lengthSq()>0.0001){
+          const up = new THREE.Vector3(0,1,0);
+          const quat = new THREE.Quaternion().setFromUnitVectors(up, forward.clone().normalize());
+          mesh.quaternion.slerp(quat, 0.1);
+        }
+
+        // fake wing buzz by tiny scale pulsing
+        const buzz = (Math.sin(t*60 + jitter.x*10)*0.02);
+        mesh.scale.setScalar(Math.max(0.001, mesh.scale.x + buzz*0.001));
+      }
+
       renderer.render(scene, camera);
     }
     animate();
