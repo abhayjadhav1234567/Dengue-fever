@@ -1,17 +1,133 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Stop Dengue - Home</title>
-  <link rel="stylesheet" href="styles/main.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dengue Awareness Project</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { font-family: 'Inter', sans-serif; background: black; color: white; }
+    .glass { background: rgba(255,255,255,0.08); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); }
+    #bg { position: fixed; inset: 0; z-index: -1; }
+  </style>
 </head>
 <body>
-  <header>
-    <h1>Awareness and Prevention of Dengue Fever</h1>
-    <p>Join our community effort to fight dengue in Sangamner!</p>
-  </header>
-  <section class="stats">
-    <h2>Dengue Cases in Maharashtra (2023): 1,200+</h2>
+  <!-- 3D Background -->
+  <canvas id="bg"></canvas>
+
+  <!-- Hero -->
+  <section class="min-h-screen flex items-center justify-center text-center px-6">
+    <div>
+      <h1 class="text-5xl font-extrabold mb-4">Awareness and Prevention of Dengue Fever</h1>
+      <p class="text-lg text-gray-200">Community Engagement Project</p>
+    </div>
   </section>
-  <a href="events.html" class="cta-button">Join Clean-Up Drive</a>
+
+  <!-- Aim -->
+  <section class="py-20 px-6 max-w-4xl mx-auto">
+    <div class="glass rounded-2xl p-8">
+      <h2 class="text-3xl font-bold mb-4">Aim</h2>
+      <p>To increase awareness about dengue fever, its prevention and control measures in the community to reduce the incidence of dengue cases.</p>
+    </div>
+  </section>
+
+  <!-- Objectives -->
+  <section class="py-20 px-6 max-w-5xl mx-auto">
+    <h2 class="text-3xl font-bold mb-8">Objectives</h2>
+    <ul class="grid md:grid-cols-2 gap-6">
+      <li class="glass p-6 rounded-2xl">Ensure the local community knows about causes and symptoms of dengue fever.</li>
+      <li class="glass p-6 rounded-2xl">Promote preventive measures: mosquito control, eliminating breeding sites, personal protection.</li>
+      <li class="glass p-6 rounded-2xl">Collaborate with local health authorities and organize awareness & cleaning drives.</li>
+      <li class="glass p-6 rounded-2xl">Assess impact of the awareness program on community knowledge and behaviour.</li>
+    </ul>
+  </section>
+
+  <!-- Expected Outcomes -->
+  <section class="py-20 px-6 max-w-6xl mx-auto">
+    <h2 class="text-3xl font-bold mb-8">Expected Outcomes</h2>
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="glass p-6 rounded-2xl">Improved community knowledge about dengue and its prevention.</div>
+      <div class="glass p-6 rounded-2xl">Reduced mosquito breeding sites through clean-up drives.</div>
+      <div class="glass p-6 rounded-2xl">Enhanced collaboration between community and local authorities.</div>
+      <div class="glass p-6 rounded-2xl">Decrease in number of dengue cases reported.</div>
+      <div class="glass p-6 rounded-2xl">Improved personal protection (repellents, clothing, screens).</div>
+      <div class="glass p-6 rounded-2xl">Increased participation in anti-larvae campaigns.</div>
+    </div>
+  </section>
+
+  <!-- Plan of Execution -->
+  <section class="py-20 px-6 max-w-5xl mx-auto">
+    <h2 class="text-3xl font-bold mb-8">Plan of Execution</h2>
+    <ol class="space-y-4">
+      <li class="glass p-4 rounded-2xl">Week 1 – Introduce project goals and objectives.</li>
+      <li class="glass p-4 rounded-2xl">Week 2 – Assemble project team and assign roles.</li>
+      <li class="glass p-4 rounded-2xl">Week 3 – Utilize social media platforms for awareness.</li>
+      <li class="glass p-4 rounded-2xl">Week 4 – Organize community clean-up events.</li>
+      <li class="glass p-4 rounded-2xl">Week 5 – Assess project impact and effectiveness.</li>
+      <li class="glass p-4 rounded-2xl">Week 6 – Plan for sustained awareness and prevention efforts.</li>
+      <li class="glass p-4 rounded-2xl">Week 7 – Document project outcomes and gather feedback.</li>
+    </ol>
+  </section>
+
+  <!-- Place & Authorities -->
+  <section class="py-20 px-6 max-w-5xl mx-auto">
+    <h2 class="text-3xl font-bold mb-4">Place & Involvement of Local Authority</h2>
+    <div class="glass p-6 rounded-2xl">
+      <p><strong>Place:</strong> Girls Hostel, Ghulewadi, Sangamne</p>
+      <p class="mt-2"><strong>Involvement:</strong></p>
+      <ul class="list-disc list-inside text-gray-200">
+        <li>Local health department to provide expert resources and data.</li>
+        <li>Municipal corporation to assist in waste disposal and cleaning drive.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Team Members -->
+  <section class="py-20 px-6 max-w-5xl mx-auto">
+    <h2 class="text-3xl font-bold mb-8">Team Members</h2>
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="glass p-4 rounded-2xl">Jain Jiya Amol (Roll No. 356)</div>
+      <div class="glass p-4 rounded-2xl">Mrunal Sanjay Galgatte (Roll No. 343)</div>
+      <div class="glass p-4 rounded-2xl">Abhay Nitin Jadhav (Roll No. 351)</div>
+      <div class="glass p-4 rounded-2xl">Jadhav Kiran Sunil (Roll No. 353)</div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-10 text-center text-gray-400">
+    Faculty Mentor: Prof. Dighe Mam <br>
+    © 2025 Dengue Awareness Project
+  </footer>
+
+  <!-- Three.js for 3D Background -->
+  <script src="https://unpkg.com/three@0.158.0/build/three.min.js"></script>
+  <script>
+    const canvas = document.getElementById('bg');
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias:true, alpha:true });
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(60, innerWidth/innerHeight, 0.1, 100);
+    camera.position.z = 5;
+    renderer.setSize(innerWidth, innerHeight);
+    renderer.setPixelRatio(window.devicePixelRatio);
+
+    const geo = new THREE.IcosahedronGeometry(2, 1);
+    const mat = new THREE.MeshStandardMaterial({ color: 0x00ffff, wireframe:true });
+    const mesh = new THREE.Mesh(geo, mat);
+    scene.add(mesh);
+
+    const light = new THREE.DirectionalLight(0xffffff, 1);
+    light.position.set(2,2,2);
+    scene.add(light);
+
+    function animate() {
+      requestAnimationFrame(animate);
+      mesh.rotation.x += 0.003;
+      mesh.rotation.y += 0.004;
+      renderer.render(scene, camera);
+    }
+    animate();
+  </script>
 </body>
 </html>
