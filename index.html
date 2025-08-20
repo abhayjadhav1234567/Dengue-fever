@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3D Dengue Defense - Awareness & Prevention</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <title>Dengue Awareness - Prevention & Control</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -15,548 +15,608 @@
         
         body {
             font-family: 'Open Sans', sans-serif;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-            color: #f0f0f0;
+            background: linear-gradient(to bottom, #f8fdff, #e8f4ff);
+            color: #333;
             line-height: 1.6;
-            overflow-x: hidden;
-            min-height: 100vh;
-            perspective: 1000px;
         }
         
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
-            transform-style: preserve-3d;
+            padding: 0 20px;
         }
         
         header {
-            text-align: center;
-            padding: 60px 20px;
-            background: rgba(0, 0, 0, 0.4);
-            border-radius: 20px;
-            margin-bottom: 40px;
-            position: relative;
-            overflow: hidden;
-            transform: translateZ(20px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            background: linear-gradient(to right, #2c6eaf, #1a4f82);
+            color: white;
+            padding: 25px 0;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
         }
         
-        h1 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 4rem;
-            color: #ff9e44;
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
-            margin-bottom: 15px;
-            letter-spacing: 2px;
-            transform: translateZ(30px);
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
         
-        h2 {
-            font-family: 'Montserrat', sans-serif;
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo i {
             font-size: 2.5rem;
-            color: #4ecca3;
-            margin: 30px 0 20px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            transform: translateZ(25px);
-        }
-        
-        h3 {
-            font-size: 1.8rem;
             color: #ff9e44;
-            margin: 25px 0 15px;
-            transform: translateZ(20px);
         }
         
-        p {
-            font-size: 1.1rem;
-            margin-bottom: 20px;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            transform: translateZ(10px);
+        .logo h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 600;
         }
         
-        .subtitle {
-            font-size: 1.5rem;
-            color: #ccccff;
-            margin-bottom: 40px;
-            transform: translateZ(15px);
-        }
-        
-        /* 3D Mosquito */
-        .mosquito-container {
-            position: absolute;
-            top: 20px;
-            right: 40px;
-            width: 120px;
-            height: 120px;
-            z-index: 10;
-            transform-style: preserve-3d;
-            animation: float 6s ease-in-out infinite;
-        }
-        
-        .mosquito {
-            width: 60px;
-            height: 60px;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50,15 C60,15 68,23 68,33 C68,43 60,51 50,51 C40,51 32,43 32,33 C32,23 40,15 50,15 Z' fill='%23444'/%3E%3Cpath d='M45,51 L45,70' stroke='%23444' stroke-width='3'/%3E%3Cpath d='M55,51 L55,70' stroke='%23444' stroke-width='3'/%3E%3Cpath d='M40,30 L15,20' stroke='%23444' stroke-width='2'/%3E%3Cpath d='M60,30 L85,20' stroke='%23444' stroke-width='2'/%3E%3Cpath d='M40,40 L20,60' stroke='%23444' stroke-width='2'/%3E%3Cpath d='M60,40 L80,60' stroke='%23444' stroke-width='2'/%3E%3Cpath d='M45,70 L35,85' stroke='%23444' stroke-width='2'/%3E%3Cpath d='M55,70 L65,85' stroke='%23444' stroke-width='2'/%3E%3C/svg%3E");
-            background-size: contain;
-            background-repeat: no-repeat;
-            position: absolute;
-            animation: fly 8s linear infinite;
-            filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.7));
-            transition: transform 0.3s;
-            transform-style: preserve-3d;
-        }
-        
-        .mosquito:hover {
-            transform: scale(1.3) rotateZ(10deg);
-        }
-        
-        @keyframes fly {
-            0% {
-                transform: translate(0, 0) rotate(0deg) scale(0.9);
-            }
-            25% {
-                transform: translate(40px, 50px) rotate(90deg) scale(1);
-            }
-            50% {
-                transform: translate(80px, 20px) rotate(180deg) scale(1.1);
-            }
-            75% {
-                transform: translate(30px, 70px) rotate(270deg) scale(1);
-            }
-            100% {
-                transform: translate(0, 0) rotate(360deg) scale(0.9);
-            }
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate3d(0, 1, 0, 0deg); }
-            50% { transform: translateY(-15px) rotate3d(0, 1, 0, 10deg); }
-        }
-        
-        /* 3D Content Sections */
-        .content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+        nav ul {
+            display: flex;
+            list-style: none;
             gap: 30px;
-            margin-bottom: 40px;
-            transform-style: preserve-3d;
         }
         
-        .prevention-section, .symptoms-section {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            transform: translateZ(15px);
-            transition: transform 0.5s, box-shadow 0.5s;
-            position: relative;
-            overflow: hidden;
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
         }
         
-        .prevention-section::before, .symptoms-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, rgba(78, 204, 163, 0.1) 0%, transparent 70%);
-            z-index: -1;
+        nav a:hover {
+            color: #ff9e44;
         }
         
-        .prevention-section:hover, .symptoms-section:hover {
-            transform: translateZ(25px) translateY(-10px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+        .hero {
+            text-align: center;
+            padding: 70px 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23f0f8ff"/><path d="M0,0 L100,100 M100,0 L0,100" stroke="%23e1f1ff" stroke-width="2"/></svg>');
+            background-size: 30px;
         }
         
-        .prevention-list, .symptoms-list {
-            list-style-type: none;
-            transform: translateZ(10px);
+        .hero h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.8rem;
+            color: #2c6eaf;
+            margin-bottom: 20px;
         }
         
-        .prevention-list li, .symptoms-list li {
-            background: rgba(255, 255, 255, 0.05);
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            color: #555;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 14px 30px;
+            background: #2c6eaf;
+            color: white;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 4px 10px rgba(44, 110, 175, 0.3);
+        }
+        
+        .btn:hover {
+            background: #1a4f82;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(44, 110, 175, 0.4);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #2c6eaf;
+            color: #2c6eaf;
+        }
+        
+        .btn-outline:hover {
+            background: #2c6eaf;
+            color: white;
+        }
+        
+        section {
+            padding: 70px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            color: #2c6eaf;
             margin-bottom: 15px;
-            padding: 15px;
-            border-radius: 10px;
-            border-left: 4px solid #4ecca3;
-            transform: translateZ(5px);
-            transition: transform 0.3s;
         }
         
-        .prevention-list li:hover, .symptoms-list li:hover {
-            transform: translateZ(15px) translateX(10px);
-            background: rgba(255, 255, 255, 0.1);
+        .section-title p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
         }
         
-        .symptoms-list li {
-            border-left: 4px solid #ff6b6b;
-        }
-        
-        /* 3D Cards for Prevention Tips */
-        .prevention-cards {
+        .card-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin: 40px 0;
-            transform-style: preserve-3d;
+            gap: 30px;
         }
         
-        .prevention-card {
-            background: linear-gradient(135deg, rgba(78, 204, 163, 0.15) 0%, rgba(31, 58, 92, 0.8) 100%);
-            padding: 25px;
+        .card {
+            background: white;
             border-radius: 15px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            transform: translateZ(10px);
-            transition: transform 0.4s, box-shadow 0.4s;
-            position: relative;
             overflow: hidden;
-            transform-style: preserve-3d;
-        }
-        
-        .prevention-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transform: rotate(45deg);
-            transition: all 0.5s;
-            z-index: 0;
-        }
-        
-        .prevention-card:hover {
-            transform: translateZ(30px) rotateY(5deg);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-        }
-        
-        .prevention-card:hover::before {
-            left: 100%;
-        }
-        
-        .prevention-card h4 {
-            color: #ff9e44;
-            margin-bottom: 15px;
-            font-size: 1.4rem;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .prevention-card p {
-            color: #e6e6e6;
-            position: relative;
-            z-index: 1;
-        }
-        
-        /* 3D Button Styles */
-        .btn-3d {
-            display: inline-block;
-            padding: 15px 30px;
-            background: linear-gradient(to bottom, #ff9e44, #ff7b00);
-            color: #1a1a2e;
-            border: none;
-            border-radius: 50px;
-            font-weight: bold;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transform-style: preserve-3d;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
             transition: transform 0.3s, box-shadow 0.3s;
-            position: relative;
-            overflow: hidden;
-            margin: 10px;
-            box-shadow: 0 8px 0 #e26c00, 0 10px 20px rgba(0, 0, 0, 0.3);
         }
         
-        .btn-3d::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transform: translateY(-100%);
-            transition: transform 0.3s;
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
         }
         
-        .btn-3d:hover {
-            transform: translateY(5px) translateZ(20px);
-            box-shadow: 0 3px 0 #e26c00, 0 5px 15px rgba(0, 0, 0, 0.3);
+        .card-icon {
+            background: #2c6eaf;
+            color: white;
+            font-size: 2.5rem;
+            padding: 30px;
+            text-align: center;
         }
         
-        .btn-3d:hover::before {
-            transform: translateY(100%);
+        .card-content {
+            padding: 25px;
         }
         
-        .btn-3d:active {
-            transform: translateY(8px) translateZ(10px);
-            box-shadow: 0 0 0 #e26c00, 0 2px 10px rgba(0, 0, 0, 0.3);
+        .card h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            color: #2c6eaf;
+            margin-bottom: 15px;
         }
         
-        /* 3D Stats Section */
-        .stats-section {
+        .card p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+        
+        .card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .card li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            color: #555;
+        }
+        
+        .card li:last-child {
+            border-bottom: none;
+        }
+        
+        .card li i {
+            color: #2c6eaf;
+            margin-right: 10px;
+        }
+        
+        .team-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-            margin: 50px 0;
-            transform-style: preserve-3d;
+            gap: 30px;
         }
         
-        .stat-card {
-            background: rgba(255, 255, 255, 0.05);
+        .team-member {
+            text-align: center;
+            background: white;
             padding: 30px;
             border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        .team-member h3 {
+            font-family: 'Poppins', sans-serif;
+            color: #2c6eaf;
+            margin: 15px 0 5px;
+        }
+        
+        .team-member p {
+            color: #666;
+        }
+        
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: #e0e0e0;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #2c6eaf;
+        }
+        
+        footer {
+            background: #1a4f82;
+            color: white;
+            padding: 50px 0 20px;
             text-align: center;
-            transform: translateZ(10px);
-            transition: transform 0.4s;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            position: relative;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+        
+        .footer-section h3 {
+            font-family: 'Poppins', sans-serif;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+        
+        .footer-section p, .footer-section li {
+            margin-bottom: 10px;
+            color: #ccc;
+        }
+        
+        .footer-section a {
+            color: #ff9e44;
+            text-decoration: none;
+        }
+        
+        .footer-section a:hover {
+            text-decoration: underline;
+        }
+        
+        .copyright {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+        
+        /* Chatbot Styles */
+        .chatbot-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        
+        .chatbot-toggle {
+            width: 60px;
+            height: 60px;
+            background: #2c6eaf;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(44, 110, 175, 0.4);
+            transition: all 0.3s;
+        }
+        
+        .chatbot-toggle:hover {
+            transform: scale(1.1);
+            background: #1a4f82;
+        }
+        
+        .chatbot-toggle i {
+            color: white;
+            font-size: 1.5rem;
+        }
+        
+        .chatbot-window {
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            width: 350px;
+            height: 450px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+            display: none;
+            flex-direction: column;
             overflow: hidden;
         }
         
-        .stat-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(255, 158, 68, 0.1) 0%, transparent 70%);
-            z-index: -1;
+        .chat-header {
+            background: #2c6eaf;
+            color: white;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
         
-        .stat-card:hover {
-            transform: translateZ(30px) rotateX(5deg);
-        }
-        
-        .stat-number {
-            font-size: 3.5rem;
-            font-weight: bold;
-            color: #ff9e44;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-        
-        .stat-label {
+        .chat-header h3 {
+            font-family: 'Poppins', sans-serif;
             font-size: 1.2rem;
-            color: #4ecca3;
         }
         
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 40px 0;
-            margin-top: 60px;
-            color: #a5b1c2;
-            font-size: 0.9rem;
-            transform: translateZ(10px);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        .chat-messages {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
         }
         
-        /* Parallax effect for background elements */
-        .parallax-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -10;
-            transform: translateZ(-50px) scale(1.5);
+        .message {
+            padding: 10px 15px;
+            border-radius: 18px;
+            max-width: 80%;
+            animation: fadeIn 0.3s;
         }
         
-        .bg-circle {
-            position: absolute;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(78, 204, 163, 0.1) 0%, transparent 70%);
+        .bot-message {
+            background: #e8f4ff;
+            align-self: flex-start;
+            border-bottom-left-radius: 5px;
         }
         
-        .circle-1 {
-            width: 300px;
-            height: 300px;
-            top: 10%;
-            left: 10%;
-            animation: float 15s ease-in-out infinite;
+        .user-message {
+            background: #2c6eaf;
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 5px;
         }
         
-        .circle-2 {
-            width: 500px;
-            height: 500px;
-            bottom: 5%;
-            right: 5%;
-            animation: float 20s ease-in-out infinite reverse;
+        .chat-input {
+            display: flex;
+            padding: 15px;
+            border-top: 1px solid #eee;
+        }
+        
+        .chat-input input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            font-size: 1rem;
+        }
+        
+        .chat-input button {
+            background: #2c6eaf;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 0 20px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
         /* Responsive Design */
         @media (max-width: 768px) {
-            .content {
-                grid-template-columns: 1fr;
+            nav ul {
+                gap: 15px;
             }
             
-            h1 {
-                font-size: 2.8rem;
+            .hero h2 {
+                font-size: 2.2rem;
             }
             
-            .mosquito-container {
-                position: relative;
-                margin: 0 auto 20px;
-                top: 0;
-                right: 0;
+            .section-title h2 {
+                font-size: 2rem;
             }
             
-            .prevention-cards {
-                grid-template-columns: 1fr;
+            .chatbot-window {
+                width: 300px;
+                height: 400px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
             }
             
-            .stats-section {
-                grid-template-columns: 1fr;
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero {
+                padding: 40px 0;
+            }
+            
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+            
+            .chatbot-window {
+                width: 280px;
+                right: -20px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="parallax-bg">
-        <div class="bg-circle circle-1"></div>
-        <div class="bg-circle circle-2"></div>
-    </div>
-    
-    <div class="container">
-        <header>
-            <h1>Dengue Defense</h1>
-            <p class="subtitle">3D Interactive Dengue Awareness & Prevention</p>
-            <div class="mosquito-container">
-                <div class="mosquito"></div>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-shield-virus"></i>
+                    <h1>Dengue Defense</h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#prevention">Prevention</a></li>
+                        <li><a href="#symptoms">Symptoms</a></li>
+                        <li><a href="#team">Our Team</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
             </div>
-        </header>
-        
-        <div class="content">
-            <div class="prevention-section">
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="container">
+            <h2>Fight Dengue Together</h2>
+            <p>Dengue fever is a mosquito-borne disease that affects millions of people worldwide every year. Learn how to protect yourself and your community.</p>
+            <a href="#prevention" class="btn">Prevention Tips</a>
+            <a href="#symptoms" class="btn btn-outline">Recognize Symptoms</a>
+        </div>
+    </section>
+
+    <section id="prevention">
+        <div class="container">
+            <div class="section-title">
                 <h2>Dengue Prevention</h2>
-                <ul class="prevention-list">
-                    <li>Eliminate standing water where mosquitoes breed</li>
-                    <li>Use mosquito repellent containing DEET</li>
-                    <li>Wear long-sleeved shirts and long pants</li>
-                    <li>Install window and door screens</li>
-                    <li>Use mosquito nets while sleeping</li>
-                </ul>
+                <p>Protect yourself and your family with these effective prevention strategies</p>
             </div>
-            
-            <div class="symptoms-section">
+            <div class="card-container">
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-water"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Eliminate Breeding Sites</h3>
+                        <p>Mosquitoes that spread dengue breed in standing water. Regularly check and remove stagnant water from:</p>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Flower pots and plant saucers</li>
+                            <li><i class="fas fa-check-circle"></i> Water storage containers</li>
+                            <li><i class="fas fa-check-circle"></i> Discarded tires and bottles</li>
+                            <li><i class="fas fa-check-circle"></i> Clogged roof gutters</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-house-user"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Home Protection</h3>
+                        <p>Make your home a dengue-free zone with these measures:</p>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Install window and door screens</li>
+                            <li><i class="fas fa-check-circle"></i> Use mosquito nets while sleeping</li>
+                            <li><i class="fas fa-check-circle"></i> Use household insecticides</li>
+                            <li><i class="fas fa-check-circle"></i> Use air conditioning when possible</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Personal Protection</h3>
+                        <p>Reduce your risk of mosquito bites with these strategies:</p>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Wear long-sleeved shirts and pants</li>
+                            <li><i class="fas fa-check-circle"></i> Use EPA-registered repellents</li>
+                            <li><i class="fas fa-check-circle"></i> Avoid outdoor activities at dawn and dusk</li>
+                            <li><i class="fas fa-check-circle"></i> Use mosquito coils and vaporizers</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="symptoms" style="background: #f8fdff;">
+        <div class="container">
+            <div class="section-title">
                 <h2>Dengue Symptoms</h2>
-                <ul class="symptoms-list">
-                    <li>High fever (104°F/40°C)</li>
-                    <li>Severe headache</li>
-                    <li>Pain behind the eyes</li>
-                    <li>Muscle and joint pain</li>
-                    <li>Nausea and vomiting</li>
-                </ul>
+                <p>Recognizing symptoms early can lead to prompt medical attention and better outcomes</p>
+            </div>
+            <div class="card-container">
+                <div class="card">
+                    <div class="card-icon" style="background: #ff9e44;">
+                        <i class="fas fa-temperature-high"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Mild Symptoms</h3>
+                        <p>These usually appear 4-10 days after being bitten by an infected mosquito:</p>
+                        <ul>
+                            <li><i class="fas fa-arrow-right"></i> High fever (104°F/40°C)</li>
+                            <li><i class="fas fa-arrow-right"></i> Severe headache</li>
+                            <li><i class="fas fa-arrow-right"></i> Pain behind the eyes</li>
+                            <li><i class="fas fa-arrow-right"></i> Muscle and joint pain</li>
+                            <li><i class="fas fa-arrow-right"></i> Nausea and vomiting</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-icon" style="background: #ff6b6b;">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Severe Symptoms</h3>
+                        <p>Severe dengue is a medical emergency. Watch for these warning signs:</p>
+                        <ul>
+                            <li><i class="fas fa-arrow-right"></i> Severe abdominal pain</li>
+                            <li><i class="fas fa-arrow-right"></i> Persistent vomiting</li>
+                            <li><i class="fas fa-arrow-right"></i> Bleeding from gums or nose</li>
+                            <li><i class="fas fa-arrow-right"></i> Blood in vomit or stool</li>
+                            <li><i class="fas fa-arrow-right"></i> Difficulty breathing</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-icon" style="background: #4ecca3;">
+                        <i class="fas fa-hand-holding-medical"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Treatment & Care</h3>
+                        <p>If you suspect dengue, follow these guidelines:</p>
+                        <ul>
+                            <li><i class="fas fa-arrow-right"></i> Seek medical advice immediately</li>
+                            <li><i class="fas fa-arrow-right"></i> Rest and stay hydrated</li>
+                            <li><i class="fas fa-arrow-right"></i> Use acetaminophen for pain relief</li>
+                            <li><i class="fas fa-arrow-right"></i> Avoid aspirin and ibuprofen</li>
+                            <li><i class="fas fa-arrow-right"></i> Follow your doctor's instructions</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
-        
-        <h2>Essential Prevention Measures</h2>
-        <div class="prevention-cards">
-            <div class="prevention-card">
-                <h4>Remove Standing Water</h4>
-                <p>Regularly empty and clean containers that hold water, such as buckets, flower pots, and bird baths.</p>
-            </div>
-            
-            <div class="prevention-card">
-                <h4>Use Mosquito Repellent</h4>
-                <p>Apply EPA-approved repellents containing DEET, picaridin, or oil of lemon eucalyptus.</p>
-            </div>
-            
-            <div class="prevention-card">
-                <h4>Protective Clothing</h4>
-                <p>Wear long-sleeved shirts, long pants, socks, and shoes to cover exposed skin.</p>
-            </div>
-            
-            <div class="prevention-card">
-                <h4>Window Screens</h4>
-                <p>Install or repair window and door screens to keep mosquitoes outside.</p>
-            </div>
-        </div>
-        
-        <div style="text-align: center; margin: 40px 0;">
-            <button class="btn-3d"><i class="fas fa-book"></i> Learn More</button>
-            <button class="btn-3d"><i class="fas fa-shield-alt"></i> Prevention Tips</button>
-            <button class="btn-3d"><i class="fas fa-phone-alt"></i> Contact Health Services</button>
-        </div>
-        
-        <h2>Dengue by the Numbers</h2>
-        <div class="stats-section">
-            <div class="stat-card">
-                <div class="stat-number">390M</div>
-                <div class="stat-label">Yearly Infections</div>
-            </div>
-            
-            <div class="stat-card">
-                <div class="stat-number">40%</div>
-                <div class="stat-label">World Population at Risk</div>
-            </div>
-            
-            <div class="stat-card">
-                <div class="stat-number">96M</div>
-                <div class="stat-label">Severe Cases Yearly</div>
-            </div>
-            
-            <div class="stat-card">
-                <div class="stat-number">80%</div>
-                <div class="stat-label">Cases Are Asymptomatic</div>
-            </div>
-        </div>
-        
-        <footer>
-            <p>© 2023 Dengue Defense Initiative | This is for educational purposes only. Always consult a healthcare professional for medical advice.</p>
-            <p>3D Interactive Awareness Platform | Stay Safe, Stay Protected</p>
-        </footer>
-    </div>
+    </section>
 
-    <script>
-        // Add interactive 3D effect on mouse move
-        document.addEventListener('mousemove', function(e) {
-            const depth = 20;
-            const moveX = (e.clientX - window.innerWidth / 2) / depth;
-            const moveY = (e.clientY - window.innerHeight / 2) / depth;
-            
-            const header = document.querySelector('header');
-            const preventionCards = document.querySelectorAll('.prevention-card');
-            const statCards = document.querySelectorAll('.stat-card');
-            
-            header.style.transform = `translateZ(20px) rotateY(${moveX}deg) rotateX(${-moveY}deg)`;
-            
-            preventionCards.forEach((card, index) => {
-                const delay = index * 0.05;
-                card.style.transform = `translateZ(10px) rotateY(${moveX * 0.5}deg) rotateX(${-moveY * 0.5}deg)`;
-                card.style.transitionDelay = `${delay}s`;
-            });
-            
-            statCards.forEach((card, index) => {
-                const delay = index * 0.05;
-                card.style.transform = `translateZ(10px) rotateY(${moveX * 0.3}deg) rotateX(${-moveY * 0.3}deg)`;
-                card.style.transitionDelay = `${delay}s`;
-            });
-        });
-
-        // Reset transformations when mouse leaves the window
-        document.addEventListener('mouseleave', function() {
-            const header = document.querySelector('header');
-            const preventionCards = document.querySelectorAll('.prevention-card');
-            const statCards = document.querySelectorAll('.stat-card');
-            
-            header.style.transform = 'translateZ(20px)';
-            
-            preventionCards.forEach(card => {
-                card.style.transform = 'translateZ(10px)';
-            });
-            
-            statCards.forEach(card => {
-                card.style.transform = 'translateZ(10px)';
-            });
-        });
-    </script>
-</body>
-</html>
+    <section id="team">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Team</h2>
+                <p>Meet the dedicated individuals working on dengue awareness and prevention</p>
+            </div>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="avatar">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <h3>Dr. Sarah Johnson</h3>
+                    <p>Medical Director</p>
+                </div>
+                <div class="team-member">
+                    <div class="avatar">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <h3>Michael Chen</h3>
+                    <p>Research Scientist</p>
+                </div>
+                <div class="team-member">
+                    <div class="avatar">
+  
