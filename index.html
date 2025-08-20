@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dengue Defender - Awareness & Prevention</title>
+    <title>3D Dengue Defense - Awareness & Prevention</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -14,43 +15,57 @@
         
         body {
             font-family: 'Open Sans', sans-serif;
-            background: linear-gradient(to bottom, #1a1a2e, #16213e);
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
             color: #f0f0f0;
             line-height: 1.6;
             overflow-x: hidden;
-            position: relative;
             min-height: 100vh;
+            perspective: 1000px;
         }
         
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
+            transform-style: preserve-3d;
         }
         
         header {
             text-align: center;
-            padding: 40px 20px;
+            padding: 60px 20px;
             background: rgba(0, 0, 0, 0.4);
-            border-radius: 15px;
-            margin-bottom: 30px;
+            border-radius: 20px;
+            margin-bottom: 40px;
             position: relative;
             overflow: hidden;
+            transform: translateZ(20px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
         }
         
         h1 {
             font-family: 'Montserrat', sans-serif;
-            font-size: 3.5rem;
+            font-size: 4rem;
             color: #ff9e44;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
             margin-bottom: 15px;
+            letter-spacing: 2px;
+            transform: translateZ(30px);
         }
         
         h2 {
             font-family: 'Montserrat', sans-serif;
-            font-size: 2.2rem;
+            font-size: 2.5rem;
             color: #4ecca3;
+            margin: 30px 0 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            transform: translateZ(25px);
+        }
+        
+        h3 {
+            font-size: 1.8rem;
+            color: #ff9e44;
             margin: 25px 0 15px;
+            transform: translateZ(20px);
         }
         
         p {
@@ -59,15 +74,26 @@
             max-width: 800px;
             margin-left: auto;
             margin-right: auto;
+            transform: translateZ(10px);
         }
         
+        .subtitle {
+            font-size: 1.5rem;
+            color: #ccccff;
+            margin-bottom: 40px;
+            transform: translateZ(15px);
+        }
+        
+        /* 3D Mosquito */
         .mosquito-container {
             position: absolute;
             top: 20px;
-            right: 20px;
+            right: 40px;
             width: 120px;
             height: 120px;
             z-index: 10;
+            transform-style: preserve-3d;
+            animation: float 6s ease-in-out infinite;
         }
         
         .mosquito {
@@ -77,13 +103,14 @@
             background-size: contain;
             background-repeat: no-repeat;
             position: absolute;
-            animation: fly 15s linear infinite;
-            filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.7));
+            animation: fly 8s linear infinite;
+            filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.7));
             transition: transform 0.3s;
+            transform-style: preserve-3d;
         }
         
         .mosquito:hover {
-            transform: scale(1.2);
+            transform: scale(1.3) rotateZ(10deg);
         }
         
         @keyframes fly {
@@ -104,202 +131,274 @@
             }
         }
         
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate3d(0, 1, 0, 0deg); }
+            50% { transform: translateY(-15px) rotate3d(0, 1, 0, 10deg); }
+        }
+        
+        /* 3D Content Sections */
         .content {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 30px;
             margin-bottom: 40px;
+            transform-style: preserve-3d;
         }
         
         .prevention-section, .symptoms-section {
             background: rgba(255, 255, 255, 0.1);
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transform: translateZ(15px);
+            transition: transform 0.5s, box-shadow 0.5s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .prevention-section::before, .symptoms-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(78, 204, 163, 0.1) 0%, transparent 70%);
+            z-index: -1;
+        }
+        
+        .prevention-section:hover, .symptoms-section:hover {
+            transform: translateZ(25px) translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
         }
         
         .prevention-list, .symptoms-list {
             list-style-type: none;
+            transform: translateZ(10px);
         }
         
         .prevention-list li, .symptoms-list li {
             background: rgba(255, 255, 255, 0.05);
-            margin-bottom: 12px;
-            padding: 12px 15px;
-            border-radius: 8px;
+            margin-bottom: 15px;
+            padding: 15px;
+            border-radius: 10px;
             border-left: 4px solid #4ecca3;
+            transform: translateZ(5px);
+            transition: transform 0.3s;
+        }
+        
+        .prevention-list li:hover, .symptoms-list li:hover {
+            transform: translateZ(15px) translateX(10px);
+            background: rgba(255, 255, 255, 0.1);
         }
         
         .symptoms-list li {
             border-left: 4px solid #ff6b6b;
         }
         
-        /* Chatbot Styles */
-        .chatbot-container {
-            background: linear-gradient(to bottom, #232946, #1f3a5c);
-            border-radius: 15px;
+        /* 3D Cards for Prevention Tips */
+        .prevention-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+            transform-style: preserve-3d;
+        }
+        
+        .prevention-card {
+            background: linear-gradient(135deg, rgba(78, 204, 163, 0.15) 0%, rgba(31, 58, 92, 0.8) 100%);
             padding: 25px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-            margin-top: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transform: translateZ(10px);
+            transition: transform 0.4s, box-shadow 0.4s;
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
         }
         
-        .chatbot-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
+        .prevention-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.5s;
+            z-index: 0;
         }
         
-        .chatbot-icon {
-            width: 60px;
-            height: 60px;
-            background: #ff9e44;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 15px;
-            font-size: 24px;
-            font-weight: bold;
-            color: #1a1a2e;
+        .prevention-card:hover {
+            transform: translateZ(30px) rotateY(5deg);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
         }
         
-        .chatbot-title {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.8rem;
+        .prevention-card:hover::before {
+            left: 100%;
+        }
+        
+        .prevention-card h4 {
             color: #ff9e44;
-        }
-        
-        .chatbot-subtitle {
-            font-size: 1rem;
-            color: #a5b1c2;
-            margin-top: 5px;
-        }
-        
-        .chat-window {
-            background: rgba(255, 255, 255, 0.08);
-            border-radius: 12px;
-            padding: 20px;
-            height: 300px;
-            overflow-y: auto;
-            margin-bottom: 20px;
-        }
-        
-        .message {
-            padding: 12px 16px;
-            border-radius: 18px;
             margin-bottom: 15px;
-            max-width: 80%;
-            animation: fadeIn 0.5s;
+            font-size: 1.4rem;
+            position: relative;
+            z-index: 1;
         }
         
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        .prevention-card p {
+            color: #e6e6e6;
+            position: relative;
+            z-index: 1;
         }
         
-        .bot-message {
-            background: rgba(78, 204, 163, 0.2);
-            border: 1px solid #4ecca3;
-            align-self: flex-start;
-        }
-        
-        .user-message {
-            background: rgba(255, 158, 68, 0.2);
-            border: 1px solid #ff9e44;
-            align-self: flex-end;
-            margin-left: auto;
-        }
-        
-        .chat-input {
-            display: flex;
-            gap: 10px;
-        }
-        
-        .chat-input input {
-            flex: 1;
-            padding: 12px 15px;
-            border: none;
-            border-radius: 25px;
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            font-size: 1rem;
-        }
-        
-        .chat-input input:focus {
-            outline: none;
-            background: rgba(255, 255, 255, 0.15);
-        }
-        
-        .btn {
-            padding: 12px 25px;
-            border: none;
-            border-radius: 25px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .yes-btn {
-            background: #4ecca3;
+        /* 3D Button Styles */
+        .btn-3d {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(to bottom, #ff9e44, #ff7b00);
             color: #1a1a2e;
-        }
-        
-        .no-btn {
-            background: #ff6b6b;
-            color: white;
-        }
-        
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-        
-        .btn:active {
-            transform: translateY(0);
-        }
-        
-        .risk-indicator {
-            margin-top: 20px;
-            padding: 15px;
-            border-radius: 10px;
-            text-align: center;
+            border: none;
+            border-radius: 50px;
             font-weight: bold;
-            display: none;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transform-style: preserve-3d;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+            margin: 10px;
+            box-shadow: 0 8px 0 #e26c00, 0 10px 20px rgba(0, 0, 0, 0.3);
         }
         
-        .low-risk {
-            background: rgba(78, 204, 163, 0.2);
-            border: 1px solid #4ecca3;
+        .btn-3d::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: translateY(-100%);
+            transition: transform 0.3s;
+        }
+        
+        .btn-3d:hover {
+            transform: translateY(5px) translateZ(20px);
+            box-shadow: 0 3px 0 #e26c00, 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn-3d:hover::before {
+            transform: translateY(100%);
+        }
+        
+        .btn-3d:active {
+            transform: translateY(8px) translateZ(10px);
+            box-shadow: 0 0 0 #e26c00, 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* 3D Stats Section */
+        .stats-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 50px 0;
+            transform-style: preserve-3d;
+        }
+        
+        .stat-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            transform: translateZ(10px);
+            transition: transform 0.4s;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 158, 68, 0.1) 0%, transparent 70%);
+            z-index: -1;
+        }
+        
+        .stat-card:hover {
+            transform: translateZ(30px) rotateX(5deg);
+        }
+        
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: bold;
+            color: #ff9e44;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .stat-label {
+            font-size: 1.2rem;
             color: #4ecca3;
         }
         
-        .medium-risk {
-            background: rgba(255, 158, 68, 0.2);
-            border: 1px solid #ff9e44;
-            color: #ff9e44;
-        }
-        
-        .high-risk {
-            background: rgba(255, 107, 107, 0.2);
-            border: 1px solid #ff6b6b;
-            color: #ff6b6b;
-        }
-        
+        /* Footer */
         footer {
             text-align: center;
-            padding: 30px 0;
-            margin-top: 50px;
+            padding: 40px 0;
+            margin-top: 60px;
             color: #a5b1c2;
             font-size: 0.9rem;
+            transform: translateZ(10px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
         
+        /* Parallax effect for background elements */
+        .parallax-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -10;
+            transform: translateZ(-50px) scale(1.5);
+        }
+        
+        .bg-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(78, 204, 163, 0.1) 0%, transparent 70%);
+        }
+        
+        .circle-1 {
+            width: 300px;
+            height: 300px;
+            top: 10%;
+            left: 10%;
+            animation: float 15s ease-in-out infinite;
+        }
+        
+        .circle-2 {
+            width: 500px;
+            height: 500px;
+            bottom: 5%;
+            right: 5%;
+            animation: float 20s ease-in-out infinite reverse;
+        }
+        
+        /* Responsive Design */
         @media (max-width: 768px) {
             .content {
                 grid-template-columns: 1fr;
             }
             
             h1 {
-                font-size: 2.5rem;
+                font-size: 2.8rem;
             }
             
             .mosquito-container {
@@ -308,14 +407,27 @@
                 top: 0;
                 right: 0;
             }
+            
+            .prevention-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-section {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
+    <div class="parallax-bg">
+        <div class="bg-circle circle-1"></div>
+        <div class="bg-circle circle-2"></div>
+    </div>
+    
     <div class="container">
         <header>
-            <h1>Dengue Defender</h1>
-            <p>Your comprehensive resource for dengue awareness, prevention, and health assessment</p>
+            <h1>Dengue Defense</h1>
+            <p class="subtitle">3D Interactive Dengue Awareness & Prevention</p>
             <div class="mosquito-container">
                 <div class="mosquito"></div>
             </div>
@@ -323,15 +435,13 @@
         
         <div class="content">
             <div class="prevention-section">
-                <h2>Dengue Prevention Tips</h2>
+                <h2>Dengue Prevention</h2>
                 <ul class="prevention-list">
                     <li>Eliminate standing water where mosquitoes breed</li>
                     <li>Use mosquito repellent containing DEET</li>
                     <li>Wear long-sleeved shirts and long pants</li>
                     <li>Install window and door screens</li>
                     <li>Use mosquito nets while sleeping</li>
-                    <li>Keep your surroundings clean and dry</li>
-                    <li>Support community fogging efforts</li>
                 </ul>
             </div>
             
@@ -343,139 +453,110 @@
                     <li>Pain behind the eyes</li>
                     <li>Muscle and joint pain</li>
                     <li>Nausea and vomiting</li>
-                    <li>Swollen glands</li>
-                    <li>Rash</li>
                 </ul>
             </div>
         </div>
         
-        <div class="chatbot-container">
-            <div class="chatbot-header">
-                <div class="chatbot-icon">DD</div>
-                <div>
-                    <h2 class="chatbot-title">DengueScan Bot</h2>
-                    <p class="chatbot-subtitle">Answer 10 yes/no questions for a health assessment</p>
-                </div>
+        <h2>Essential Prevention Measures</h2>
+        <div class="prevention-cards">
+            <div class="prevention-card">
+                <h4>Remove Standing Water</h4>
+                <p>Regularly empty and clean containers that hold water, such as buckets, flower pots, and bird baths.</p>
             </div>
             
-            <div class="chat-window" id="chat-window">
-                <div class="message bot-message">
-                    Hello! I'm DengueScan Bot. I'll ask you 10 questions to assess your dengue risk. Please answer yes or no.
-                </div>
-                <div class="message bot-message" id="question">
-                    Do you have a high fever (above 104°F/40°C)?
-                </div>
+            <div class="prevention-card">
+                <h4>Use Mosquito Repellent</h4>
+                <p>Apply EPA-approved repellents containing DEET, picaridin, or oil of lemon eucalyptus.</p>
             </div>
             
-            <div class="chat-input">
-                <button class="btn yes-btn" onclick="answerQuestion(true)">Yes</button>
-                <button class="btn no-btn" onclick="answerQuestion(false)">No</button>
+            <div class="prevention-card">
+                <h4>Protective Clothing</h4>
+                <p>Wear long-sleeved shirts, long pants, socks, and shoes to cover exposed skin.</p>
             </div>
             
-            <div class="risk-indicator" id="risk-indicator">
-                <!-- Risk assessment will be displayed here -->
+            <div class="prevention-card">
+                <h4>Window Screens</h4>
+                <p>Install or repair window and door screens to keep mosquitoes outside.</p>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin: 40px 0;">
+            <button class="btn-3d"><i class="fas fa-book"></i> Learn More</button>
+            <button class="btn-3d"><i class="fas fa-shield-alt"></i> Prevention Tips</button>
+            <button class="btn-3d"><i class="fas fa-phone-alt"></i> Contact Health Services</button>
+        </div>
+        
+        <h2>Dengue by the Numbers</h2>
+        <div class="stats-section">
+            <div class="stat-card">
+                <div class="stat-number">390M</div>
+                <div class="stat-label">Yearly Infections</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-number">40%</div>
+                <div class="stat-label">World Population at Risk</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-number">96M</div>
+                <div class="stat-label">Severe Cases Yearly</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-number">80%</div>
+                <div class="stat-label">Cases Are Asymptomatic</div>
             </div>
         </div>
         
         <footer>
-            <p>© 2023 Dengue Defender | This is for educational purposes only. Always consult a healthcare professional for medical advice.</p>
+            <p>© 2023 Dengue Defense Initiative | This is for educational purposes only. Always consult a healthcare professional for medical advice.</p>
+            <p>3D Interactive Awareness Platform | Stay Safe, Stay Protected</p>
         </footer>
     </div>
 
     <script>
-        // Questions for the chatbot
-        const questions = [
-            "Do you have a high fever (above 104°F/40°C)?",
-            "Are you experiencing severe headaches?",
-            "Do you have pain behind your eyes?",
-            "Are you experiencing muscle or joint pain?",
-            "Do you have nausea or vomiting?",
-            "Have you noticed any skin rash?",
-            "Are you experiencing fatigue or restlessness?",
-            "Have you noticed any mild bleeding (nose or gums)?",
-            "Have you traveled to a dengue-prone area recently?",
-            "Has anyone in your household had dengue recently?"
-        ];
-        
-        let currentQuestion = 0;
-        let yesCount = 0;
-        
-        function answerQuestion(answer) {
-            // Add user's answer to chat
-            const chatWindow = document.getElementById('chat-window');
-            const userMessage = document.createElement('div');
-            userMessage.classList.add('message', 'user-message');
-            userMessage.textContent = answer ? 'Yes' : 'No';
-            chatWindow.appendChild(userMessage);
+        // Add interactive 3D effect on mouse move
+        document.addEventListener('mousemove', function(e) {
+            const depth = 20;
+            const moveX = (e.clientX - window.innerWidth / 2) / depth;
+            const moveY = (e.clientY - window.innerHeight / 2) / depth;
             
-            // Count yes answers
-            if (answer) yesCount++;
+            const header = document.querySelector('header');
+            const preventionCards = document.querySelectorAll('.prevention-card');
+            const statCards = document.querySelectorAll('.stat-card');
             
-            // Scroll to bottom of chat
-            chatWindow.scrollTop = chatWindow.scrollHeight;
+            header.style.transform = `translateZ(20px) rotateY(${moveX}deg) rotateX(${-moveY}deg)`;
             
-            // Move to next question or show results
-            currentQuestion++;
+            preventionCards.forEach((card, index) => {
+                const delay = index * 0.05;
+                card.style.transform = `translateZ(10px) rotateY(${moveX * 0.5}deg) rotateX(${-moveY * 0.5}deg)`;
+                card.style.transitionDelay = `${delay}s`;
+            });
             
-            if (currentQuestion < questions.length) {
-                // Show next question after a short delay
-                setTimeout(() => {
-                    const questionElement = document.getElementById('question');
-                    questionElement.textContent = questions[currentQuestion];
-                    chatWindow.scrollTop = chatWindow.scrollHeight;
-                }, 800);
-            } else {
-                // Show results after a short delay
-                setTimeout(showResults, 1000);
-            }
-        }
-        
-        function showResults() {
-            const riskIndicator = document.getElementById('risk-indicator');
-            riskIndicator.style.display = 'block';
+            statCards.forEach((card, index) => {
+                const delay = index * 0.05;
+                card.style.transform = `translateZ(10px) rotateY(${moveX * 0.3}deg) rotateX(${-moveY * 0.3}deg)`;
+                card.style.transitionDelay = `${delay}s`;
+            });
+        });
+
+        // Reset transformations when mouse leaves the window
+        document.addEventListener('mouseleave', function() {
+            const header = document.querySelector('header');
+            const preventionCards = document.querySelectorAll('.prevention-card');
+            const statCards = document.querySelectorAll('.stat-card');
             
-            if (yesCount <= 2) {
-                riskIndicator.textContent = `Low risk (${yesCount}/10 symptoms). You're unlikely to have dengue, but monitor your health.`;
-                riskIndicator.className = 'risk-indicator low-risk';
-            } else if (yesCount <= 5) {
-                riskIndicator.textContent = `Medium risk (${yesCount}/10 symptoms). You may have dengue. Consult a doctor if symptoms persist.`;
-                riskIndicator.className = 'risk-indicator medium-risk';
-            } else {
-                riskIndicator.textContent = `High risk (${yesCount}/10 symptoms). You likely have dengue. Please consult a doctor immediately.`;
-                riskIndicator.className = 'risk-indicator high-risk';
-            }
+            header.style.transform = 'translateZ(20px)';
             
-            // Add restart button
-            const restartBtn = document.createElement('button');
-            restartBtn.textContent = 'Start Again';
-            restartBtn.classList.add('btn', 'yes-btn');
-            restartBtn.style.marginTop = '15px';
-            restartBtn.onclick = restartChat;
-            riskIndicator.appendChild(restartBtn);
+            preventionCards.forEach(card => {
+                card.style.transform = 'translateZ(10px)';
+            });
             
-            // Scroll to results
-            riskIndicator.scrollIntoView({ behavior: 'smooth' });
-        }
-        
-        function restartChat() {
-            currentQuestion = 0;
-            yesCount = 0;
-            
-            const chatWindow = document.getElementById('chat-window');
-            chatWindow.innerHTML = `
-                <div class="message bot-message">
-                    Hello! I'm DengueScan Bot. I'll ask you 10 questions to assess your dengue risk. Please answer yes or no.
-                </div>
-                <div class="message bot-message" id="question">
-                    Do you have a high fever (above 104°F/40°C)?
-                </div>
-            `;
-            
-            const riskIndicator = document.getElementById('risk-indicator');
-            riskIndicator.style.display = 'none';
-            riskIndicator.textContent = '';
-            riskIndicator.className = 'risk-indicator';
-        }
+            statCards.forEach(card => {
+                card.style.transform = 'translateZ(10px)';
+            });
+        });
     </script>
 </body>
 </html>
